@@ -25,7 +25,7 @@ services:
     volumes:
       - '/var/www/html/taller_moodle:/bitnami'
     ports:
-      - 82:80
+      - 83:80
     networks:
       - net_moodle
 networks:
