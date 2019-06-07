@@ -1,6 +1,4 @@
-/mariadb
-/moodle
-/php
 /apache
-/htdocs
-/db
+/mysql
+/moodle
+/apache

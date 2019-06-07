@@ -1,31 +1,24 @@
 version: '3'
 services:
-  moodle_db:
-    container_name: 'taller_moodle_db'
-    image:  'bitnami/mariadb:latest'
-    environment:
-      - MARIADB_ROOT_USER=root
-      - MARIADB_ROOT_PASSWORD=root
-      - MARIADB_DATABASE=moodle_taller
+  apache:
+    container_name: srv-moodle-apache
+    image:  jorarmarfin/apache-php:7.2
     volumes:
-      - '/var/www/html/taller_moodle:/bitnami'
+      - ./apache/www:/var/www
+      - ./apache/backup:/backup
     ports:
-      - '3307:3306'
+      - 9005:80
     networks:
       - net_moodle
-  moodle:
-    container_name: 'taller_moodle_html'
-    image:  'bitnami/moodle:3.5.2'
+  db:
+    container_name: srv-moodle-mysql
+    image:  'mysql:5.7'
     environment:
-      - MARIADB_HOST=moodle_db
-      - MARIADB_PORT_NUMBER=3306
-      - MOODLE_DATABASE_USER=root
-      - MOODLE_DATABASE_PASSWORD=root
-      - MOODLE_DATABASE_NAME=moodle_taller
+      - MYSQL_ROOT_PASSWORD=root
     volumes:
-      - '/var/www/html/taller_moodle:/bitnami'
-    ports:
-      - 83:80
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/conf:/etc/mysql/conf.d
+      - ./mysql/backup:/backup
     networks:
       - net_moodle
 networks:
