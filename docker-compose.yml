@@ -2,7 +2,7 @@ version: '3'
 services:
   apache:
     container_name: srv-moodle-apache
-    image:  jorarmarfin/apache-php:7.2
+    image:  jorarmarfin/moodle:tmp
     volumes:
       - ./apache/www:/var/www
       - ./apache/backup:/backup
@@ -12,7 +12,7 @@ services:
       - net_moodle
   db:
     container_name: srv-moodle-mysql
-    image:  'mysql:5.7'
+    image:  mysql:5.7
     environment:
       - MYSQL_ROOT_PASSWORD=root
     volumes:
