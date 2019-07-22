@@ -12,7 +12,7 @@ services:
       - net_moodle
   db:
     container_name: srv-moodle-mysql
-    image:  mysql:5.7
+    image:  jorarmarfin/mysql:5.7-moodle37
     environment:
       - MYSQL_ROOT_PASSWORD=root
     volumes:
