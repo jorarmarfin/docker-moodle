@@ -2,7 +2,7 @@ version: '3'
 services:
   apache:
     container_name: srv-moodle-apache
-    image:  jorarmarfin/moodle:tmp
+    image:  jorarmarfin/moodle:3.7
     volumes:
       - ./apache/www:/var/www
       - ./apache/backup:/backup
