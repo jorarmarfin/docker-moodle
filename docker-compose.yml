@@ -1,25 +1,31 @@
 version: '3'
 services:
-  apache:
+  moodle:
+    image: jorarmarfin/moodle:tmp1
     container_name: srv-moodle-apache
-    image:  jorarmarfin/moodle:3.7
     volumes:
-      - ./apache/www:/var/www
-      - ./apache/backup:/backup
+      - ./backup:/backup
     ports:
-      - 9005:80
+      - 9001:80
+    restart: always
     networks:
-      - net_moodle
+      - net-moodle
   db:
     container_name: srv-moodle-mysql
-    image:  jorarmarfin/mysql:5.7-moodle37
+    image: jorarmarfin/mysql:5.7-moodle-4.0.4
     environment:
       - MYSQL_ROOT_PASSWORD=root
-    volumes:
-      - ./mysql/data:/var/lib/mysql
-      - ./mysql/conf:/etc/mysql/conf.d
-      - ./mysql/backup:/backup
+      - MYSQL_DATABASE=examfactory
+    restart: always
     networks:
-      - net_moodle
+      - net-moodle
+  adminer:
+    container_name: srv-moodle-adminer
+    image: adminer:latest
+    ports:
+      - 8080:8080
+    restart: always
+    networks:
+      - net-moodle
 networks:
-  net_moodle:
+  net-moodle:

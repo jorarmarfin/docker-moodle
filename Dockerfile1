@@ -1,0 +1,6 @@
+FROM jorarmarfin/moodle:tmp
+
+COPY ./moodle.tgz /var/www/
+
+RUN tar -xvf moodle.tgz \ 
+    && chmod 0777 moodledata
