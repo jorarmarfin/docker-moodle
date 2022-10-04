@@ -1,6 +1,12 @@
 FROM jorarmarfin/moodle:tmp
 
+ENV DB_HOST='db'
+ENV DB_NAME='moodle'
+ENV DB_USER='root'
+ENV DB_PASS='root'
+
 COPY ./moodle.tgz /var/www/
 
 RUN tar -xvf moodle.tgz \ 
-    && chmod 0777 moodledata
+    && chmod 0777 moodledata \
+    && rm -f moodle.tgz

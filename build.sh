@@ -1,10 +1,11 @@
 docker build -t jorarmarfin/moodle:tmp .
 docker build -t jorarmarfin/moodle:tmp1 -f Dockerfile1 .
 
-docker run --name srv-moodle-tmp -d -p 9001:80 jorarmarfin/moodle:tmp1
+docker run --name srv-moodle-tmp -d -p 9001:80 -v /mnt/DATOS/lmayta/Docker/docker-moodle/backup:/backup jorarmarfin/moodle:tmp1
 
 
-drm srv-apache 
+dstop srv-moodle-tmp 
+drm srv-moodle-tmp 
 
 docker tag fe62c6d62a2f jorarmarfin/apache-php:latest
 
