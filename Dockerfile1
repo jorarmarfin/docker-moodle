@@ -4,6 +4,7 @@ ENV DB_HOST='db'
 ENV DB_NAME='moodle'
 ENV DB_USER='root'
 ENV DB_PASS='root'
+ENV MOODLE_DOMAIN='http://localhost:9001'
 
 COPY ./moodle.tgz /var/www/
 

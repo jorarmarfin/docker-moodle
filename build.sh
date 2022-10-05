@@ -1,4 +1,5 @@
 docker build -t jorarmarfin/moodle:tmp .
+docker build -t jorarmarfin/moodle:4.0.4 .
 docker build -t jorarmarfin/moodle:tmp1 -f Dockerfile1 .
 
 docker run --name srv-moodle-tmp -d -p 9001:80 -v /mnt/DATOS/lmayta/Docker/docker-moodle/backup:/backup jorarmarfin/moodle:tmp1

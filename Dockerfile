@@ -6,6 +6,11 @@ ENV TZ=America/Lima
 ENV TERM=xterm
 ENV DEBIAN_FRONTEND noninteractive
 ENV ACCEPT_EULA=Y
+ENV DB_HOST='db'
+ENV DB_NAME='moodle'
+ENV DB_USER='root'
+ENV DB_PASS='root'
+ENV MOODLE_DOMAIN='http://localhost:9001'
 
 RUN apt-get update && apt-get install -y \
     libpng-dev \
@@ -45,3 +50,10 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 EXPOSE 80
 
 WORKDIR /var/www/
+
+COPY ./moodle.tgz /var/www/
+COPY ./config-moodle.php /var/www/html/config.php
+
+RUN tar -xvf moodle.tgz \ 
+    && chmod 0777 moodledata \
+    && rm -f moodle.tgz
