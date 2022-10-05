@@ -24,7 +24,6 @@ RUN apt-get update && apt-get install -y \
     vim git sudo zip cron python python3 python3-venv python3-pip jq unzip cron wget mariadb-client \
     && docker-php-ext-configure opcache --enable-opcache \
     && docker-php-ext-install gd pdo_mysql pdo_pgsql zip mysqli opcache bcmath soap bz2  intl xml xmlrpc exif \
-    && pecl install xdebug  \
     && a2enmod rewrite \
     && a2enmod substitute \
     && chmod 0777 -Rf /var/www \
@@ -35,9 +34,7 @@ RUN apt-get purge -y --auto-remove $BUILD_DEPS \
 	&& rm -rf /var/lib/apt/lists/* \
 	# Forward request and error logs to docker log collector
 	&& ln -sf /dev/stdout /var/log/apache2/access.log \
-	&& ln -sf /dev/stderr /var/log/apache2/error.log \
-    && touch /var/www/html/index.php \
-    && echo "<?php phpinfo();">> /var/www/html/index.php
+	&& ln -sf /dev/stderr /var/log/apache2/error.log
 
 COPY ./files/*.ini /usr/local/etc/php/conf.d/
 COPY ./files/entrypoint.sh /sbin/entrypoint.sh
@@ -52,8 +49,9 @@ EXPOSE 80
 WORKDIR /var/www/
 
 COPY ./moodle.tgz /var/www/
-COPY ./config-moodle.php /var/www/html/config.php
 
 RUN tar -xvf moodle.tgz \ 
     && chmod 0777 moodledata \
     && rm -f moodle.tgz
+
+COPY ./config-moodle.php /var/www/html/config.php
