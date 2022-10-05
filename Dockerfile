@@ -10,7 +10,6 @@ ENV DB_HOST='db'
 ENV DB_NAME='moodle'
 ENV DB_USER='root'
 ENV DB_PASS='root'
-ENV MOODLE_DOMAIN='http://localhost:9001'
 
 RUN apt-get update && apt-get install -y \
     libpng-dev \

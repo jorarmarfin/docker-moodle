@@ -18,7 +18,7 @@ $CFG->dboptions = array (
   'dbcollation' => 'utf8mb4_general_ci',
 );
 
-$CFG->wwwroot   = getenv('MOODLE_DOMAIN');
+$CFG->wwwroot   = 'http://' . $_SERVER['HTTP_HOST'];
 $CFG->dataroot  = '/var/www/moodledata';
 $CFG->admin     = 'admin';
 
