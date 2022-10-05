@@ -8,7 +8,7 @@ $CFG->dbtype    = 'mysqli';
 $CFG->dblibrary = 'native';
 $CFG->dbhost    = getenv('DB_HOST');
 $CFG->dbname    = getenv('DB_NAME');
-$CFG->dbuser    = getenv('DB_USAR');
+$CFG->dbuser    = getenv('DB_USER');
 $CFG->dbpass    = getenv('DB_PASS');
 $CFG->prefix    = 'ocad_';
 $CFG->dboptions = array (
@@ -18,7 +18,7 @@ $CFG->dboptions = array (
   'dbcollation' => 'utf8mb4_general_ci',
 );
 
-$CFG->wwwroot   = getenv('DB_DOMAIN');
+$CFG->wwwroot   = getenv('MOODLE_DOMAIN');
 $CFG->dataroot  = '/var/www/moodledata';
 $CFG->admin     = 'admin';
 
